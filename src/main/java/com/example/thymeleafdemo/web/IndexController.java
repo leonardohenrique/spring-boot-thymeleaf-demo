@@ -7,17 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class IndexController {
 
 	@GetMapping("/")
-	public String homePage() {
+	public String index() {
 		return "index";
 	}
 
-	@GetMapping("/contact")
-	public String contactPage() {
-		return "contact";
-	}
-
-	@GetMapping("/about")
-	public String aboutPage() {
-		return "about";
-	}
 }
