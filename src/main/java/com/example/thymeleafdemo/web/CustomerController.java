@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.example.thymeleafdemo.domain.Customer;
@@ -26,8 +27,9 @@ public class CustomerController {
 	private final CustomerService service;
 
 	@GetMapping
-	public String findAll(Model model) {
-		final Page<Customer> customers = service.findAll(0, 10);
+	public String findAll(Model model, @RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "10") int size) {
+		final Page<Customer> customers = service.findAll(page, size);
 		model.addAttribute("customers", customers);
 		return "customer/index";
 	}
