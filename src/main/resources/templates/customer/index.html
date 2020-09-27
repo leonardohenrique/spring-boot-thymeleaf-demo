@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+<title>Customers</title>
+</head>
+<body>
+
+  <div layout:fragment="content">
+
+    <div th:switch="${customers.totalElements}">
+      <h2 th:case="0">No customers yet!</h2>
+      <div th:case="*">
+        <h2>Customers</h2>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="customer : ${customers}">
+              <td th:text="${customer.name}"></td>
+              <td th:text="${customer.email}"></td>
+              <td><a th:href="@{/customers/edit/{id}(id=${customer.id})}">Edit</a></td>
+              <td><a th:href="@{/customers/delete/{id}(id=${customer.id})}">Delete</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p>
+        <a th:href="@{/customers/add}">Add a new customer</a>
+      </p>
+    </div>
+  </div>
+
+</body>
+</html>

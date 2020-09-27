@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+<title>New Customer</title>
+</head>
+<body>
+
+  <div layout:fragment="content">
+    <h2>New Customer</h2>
+
+    <form action="#" th:object="${customer}" method="post">
+      <div class="form-group">
+        <label for="name">Name</label> <input type="text" class="form-control" th:field="*{name}" id="name" placeholder="Name"> <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label> <input type="text" class="form-control" th:field="*{email}" id="email" placeholder="Email"> <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+      </div>
+      <input type="submit" class="btn btn-primary" value="Add Customer">
+    </form>
+
+  </div>
+
+</body>
+</html>
