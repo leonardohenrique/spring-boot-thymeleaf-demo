@@ -27,23 +27,7 @@
               </tr>
             </tbody>
           </table>
-          <nav aria-label="Pagination" th:if="${customers.totalPages gt 0}">
-            <ul class="pagination">
-              <li class="page-item" th:classappend="${customers.number eq 0} ? 'disabled'">
-                <a class="page-link" th:href="@{/customers?page={id}(id=${customers.number - 1})}" aria-label="Previous" title="Previous Page" data-toggle="tooltip"> 
-                  <span aria-hidden="true">&laquo;</span>
-                </a>
-              </li>
-              <li class="page-item" th:classappend="${i eq customers.number} ? 'active'" th:each="i : ${#numbers.sequence(0, customers.totalPages - 1)}">
-                <a class="page-link" th:href="@{/customers?page={id}(id=${i})}" th:text="${i + 1}" th:title="${'Page '+ (i + 1)}" data-toggle="tooltip"></a>
-              </li>
-              <li class="page-item" th:classappend="${customers.number + 1 eq customers.totalPages} ? 'disabled'">
-                <a class="page-link" th:href="@{/customers?page={id}(id=${customers.number + 1})}" aria-label="Next" title="Next Page" data-toggle="tooltip"> 
-                  <span aria-hidden="true">&raquo;</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
+          <div th:insert="fragments/pagination.html :: control(page=${customers})"></div>
         </div>
         <p>
           <a th:href="@{/customers/add}">Add a new customer</a>
